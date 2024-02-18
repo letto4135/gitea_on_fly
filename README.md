@@ -13,3 +13,5 @@
 Congrats. You now have a gitea instance that can run gitea actions.
 
 For more setup go to [renovator](https://github.com/letto4135/renovator) and clone it into your gitea instance to run a dependabot like job.
+
+Once this is set up you can also clone this repo into your gitea instance and it will deploy itself when changes are made to configs.
