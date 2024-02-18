@@ -11,9 +11,6 @@ jobs:
   deploy:
     name: Deploy teatime
     runs-on: ubuntu-latest
-    container:
-      image: docker
-
     steps:
       - name: Checking out
         uses: actions/checkout@v3
