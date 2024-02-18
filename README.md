@@ -5,10 +5,10 @@
 * Run `fly deploy`
 * Go to your new app and set up your gitea account
 * On admin settings > actions > runners get your runner token from the `create new runner` button
-* Go to the .dockercmd file and replace `<token>` with the token you copied
+* Go to the `.dockercmd` file and replace `<token>` with the token you copied
 * `cd docker-daemon`
 * `fly launch --no-deploy` and create another volume `fly volumes create <app_name>_data -s 10`
-* `fly ssh console` and run the `docker run` command to start your runner
+* `fly ssh console` and run the `docker run` command from the `.dockercmd` file to start your runner
 
 Congrats. You now have a gitea instance that can run gitea actions.
 
