@@ -1,5 +1,5 @@
-* Create an account on fly.io if you don't have one.
-* Edit the fly.toml files and replace the instances of `<app_name>` to be the name you want.
+* Create an account on [fly.io](fly.io) if you don't have one.
+* Edit the `fly.toml` files in the root and in docker-daemon and replace the instances of `<app_name>` to be the name you want.
 * Run `fly launch --no-deploy` in the root dir and accept the fly.toml config that is already there
 * Set up the volume `fly volumes create gitea_data -s 10`, replace 10 with however many GB you want the volume to be. It can be expaned later.
 * Run `fly deploy`
