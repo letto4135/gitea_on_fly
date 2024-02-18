@@ -1,0 +1,27 @@
+name: Gitea Actions Deploy
+run-name: ${{ gitea.actor }} is deploying
+
+on:
+  [push]
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+jobs:
+  deploy:
+    name: Deploy teatime
+    runs-on: ubuntu-latest
+    container:
+      image: docker
+
+    steps:
+      - name: Checking out
+        uses: actions/checkout@v3
+      - name: Set up fly
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy to teatime
+        run: flyctl deploy --remote-only
+      - name: Deploy runner
+        run: |
+          cd docker-daemon
+          flyctl deploy --remote-only --detach

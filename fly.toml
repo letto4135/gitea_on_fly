@@ -1,0 +1,53 @@
+# fly.toml app configuration file generated for teabags on 2024-02-17T19:31:58-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = '<app_name>'
+primary_region = 'ord'
+kill_timeout = '5s'
+
+[build]
+  image = 'gitea/gitea:latest'
+
+[env]
+  GITEA__database__DB_TYPE = 'sqlite3'
+  GITEA__database__PATH = '/data/gitea/gitea.db'
+  GITEA__security__INSTALL_LOCK = 'true'
+  GITEA__server__DOMAIN = '<app_name>.fly.dev'
+  GITEA__server__ROOT_URL = 'https://<app_name>.fly.dev'
+  GITEA__server__SSH_DOMAIN = '<app_name>.fly.dev'
+  GITEA__service__DISABLE_REGISTRATION='true'
+  GITEA__repository__ROOT = '/data/gitea_repos'
+  GITEA__repository__DEFAULT_PRIVATE = 'true'
+  GITEA__repository__DEFAULT_MIRROR = 'false'
+  GITEA__repository__DEFAULT_BRANCH = 'main'
+  GITEA__repository__ENABLE_PUSH_CREATE_USER = 'true'
+  GITEA__repository__ENABLE_PUSH_CREATE_ORG = 'true'
+  GITEA__action__ENABLED = 'true'
+
+[[mounts]]
+  source = 'gitea_data'
+  destination = '/data'
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 22
+  auto_stop_machines = false
+  auto_start_machines = true
+
+[[services.ports]]
+    port = 22
+
+[[vm]]
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 512

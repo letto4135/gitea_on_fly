@@ -1,0 +1,7 @@
+docker run -e GITEA_INSTANCE_URL=https://teabags.fly.dev \
+    -e GITEA_RUNNER_REGISTRATION_TOKEN=<token> \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    --restart always \
+    --name teabags_runner gitea/act_runner:latest
+
+docker update --restart=no <container_id>
